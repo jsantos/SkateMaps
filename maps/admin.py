@@ -1,4 +1,4 @@
-from skatemaps.maps.models import Categoria, Spot, CategoriaSpot
+from skatemaps.maps.models import Categoria, Spot#, CategoriaSpot
 from django.contrib import admin
 
 class CategoriaAdmin(admin.ModelAdmin):
