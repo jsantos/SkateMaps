@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block title %} <title>• {{ spot.nome }}</title> {% endblock %}
+{% block content %}
+
+	<!--><h1>{{spot.nome}}</h1><-->
+	<h1><span style="background-color: #000000; color: #FFFFFF; padding: 3px;">{{spot.nome}}</span></h1>
+	<a href = '{{ spot.foto }}'><img width=160 height=110 src='{{ spot.foto }}'/></a>
+	<p><b>Descrição:</b> {{ spot.descricao }}</p>
+	<p><b>Categoria(s)</b></p>
+	<ul>
+		{% for cat in spot.categoria.all %}
+			<li>{{ cat.nome }}</li>
+		{% endfor %}
+	</ul>
+	<p><b>Coordenadas:</b> ({{ spot.latitude }}, {{ spot.longitude }})</p>
+	<p><a href=/spots/>Voltar<a><p>	
+{% endblock %}

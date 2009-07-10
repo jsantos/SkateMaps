@@ -1,4 +1,4 @@
-from skatemaps.maps.models import Categoria, Spot#, CategoriaSpot
+from skatemaps.maps.models import Categoria, Spot
 from django.contrib import admin
 
 class CategoriaAdmin(admin.ModelAdmin):
@@ -11,10 +11,10 @@ admin.site.register(Categoria, CategoriaAdmin)
 
 class SpotAdmin(admin.ModelAdmin):
 	fieldsets = [
-		('Geral', {'fields': ['nome', 'foto', 'descricao', 'categoria'], }),
+		('Geral', {'fields': ['nome', 'foto', 'descricao', 'categoria',], }),
 		('Mapa', {'fields': ['latitude', 'longitude'], }),
 	]
-	list_display = ('nome', 'foto', 'descricao', 'latitude', 'longitude')
+	list_display = ('nome', 'foto', 'descricao', 'latitude', 'longitude',)
 	filter_horizontal = ('categoria', )
 	
 admin.site.register(Spot, SpotAdmin)	

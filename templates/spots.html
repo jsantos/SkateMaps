@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+{% block title %} <title>• Spot List</title> {% endblock %}
+{% block content %}
+	{% if spots %}
+		<ul>
+			{% for spot in spots %}
+				<li>
+					<p><span style="background-color: #000000; color: #FFFFFF; padding: 3px;">{{ spot.nome }}<span></p>
+					<a href = '/spots/{{ spot.id }}'><img width=160 height=110 src='{{ spot.foto }}'/></a>
+				</li>
+			{% endfor %}
+		<ul>	
+	{% else %}
+		<p>Não há spots inseridos.</p>
+	{% endif %}
+{% endblock %}

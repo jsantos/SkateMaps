@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+body{
+	font-family: Helvetica, Arial, sans-serif;
+	background-color: #FFFFFF;
+	color: #000000;
+	text-align: left;
+	margin: 0px;
+}
+
+#wrapper{
+	max-width: 800px;
+	position: static;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 20px;
+}
+
+
+img{
+	border: none
+}
+
+a,a:visited{
+	color: #000000;
+}
+
+li{
+	list-style: none;
+}

@@ -54,7 +54,7 @@ SECRET_KEY = ')il&k4og$$ch@oi_q71qo#1r@$=-)iu0p0&5%r1_=lu(em!8^t'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
-#     'django.template.loaders.eggs.load_template_source',
+    #'django.template.loaders.eggs.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,6 +66,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'skatemaps.urls'
 
 TEMPLATE_DIRS = (
+	'/Users/jorgesantos/Documents/workspace/skatemaps/templates'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -78,5 +79,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 	'django.contrib.admin',
 	'skatemaps.maps',
+	'django_evolution',
 	
 )

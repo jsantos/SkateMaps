@@ -14,5 +14,10 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
-	(r'^', 'skatemaps.maps.views.index'),
+	(r'^$', 'skatemaps.maps.views.index'),
+	(r'^spots/$', 'skatemaps.maps.views.spots'),
+	(r'^spots/(\d+)/$', 'skatemaps.maps.views.spotdetail'),
+	(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': '/Users/jorgesantos/Documents/workspace/skatemaps/media'}),
+	
 )
