@@ -16,6 +16,11 @@ body{
 	padding-top: 20px;
 }
 
+#title{
+	background-color: #000000; 
+	color: #FFFFFF; 
+	padding: 3px;
+}
 
 img{
 	border: none
