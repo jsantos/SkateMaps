@@ -5,7 +5,7 @@
 		<ul>
 			{% for spot in spots %}
 				<li>
-					<p><span id="title">{{ spot.nome }}<span></p>
+					<p><h1><span id="title">{{ spot.nome }}<span></h1></p>
 					<a href = '/spots/{{ spot.id }}'><img width=160 height=110 src='{{ spot.foto }}'/></a>
 				</li>
 			{% endfor %}

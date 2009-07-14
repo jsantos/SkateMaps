@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-
+from skatemaps.maps.views import *
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -14,10 +14,10 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
-	(r'^$', 'skatemaps.maps.views.index'),
-	(r'^spots/$', 'skatemaps.maps.views.spots'),
-	(r'^spots/(\d+)/$', 'skatemaps.maps.views.spotdetail'),
+	(r'^$', index),
+	(r'^spots/$', spots),
+	(r'^spots/(\d+)/$', spotdetail),
 	(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': '/Users/jorgesantos/Documents/workspace/skatemaps/media'}),
-	
+        {'document_root': '/Users/jorgesantos/Documents/workspace/skatemaps/media'}
+	),
 )

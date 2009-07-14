@@ -2,6 +2,7 @@
 
 body{
 	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
 	background-color: #FFFFFF;
 	color: #000000;
 	text-align: left;
@@ -20,6 +21,10 @@ body{
 	background-color: #000000; 
 	color: #FFFFFF; 
 	padding: 3px;
+}
+
+#title:hover{
+	border: 1px solid #EEFD03;
 }
 
 img{
