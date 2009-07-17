@@ -17,6 +17,10 @@ body{
 	padding-top: 20px;
 }
 
+#nav{
+	float:right;
+}
+
 #title{
 	background-color: #000000; 
 	color: #FFFFFF; 

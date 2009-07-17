@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 from skatemaps.maps.views import *
 # Uncomment the next two lines to enable the admin:
-from django.contrib import admin
+from django.contrib import *
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -17,6 +17,8 @@ urlpatterns = patterns('',
 	(r'^$', index),
 	(r'^spots/$', spots),
 	(r'^spots/(\d+)/$', spotdetail),
+	(r'^login/$', 'django.contrib.auth.views.login'),
+	(r'^logout/$', logout_page),
 	(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': '/Users/jorgesantos/Documents/workspace/skatemaps/media'}
 	),

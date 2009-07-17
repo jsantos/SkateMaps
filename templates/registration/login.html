@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block title %} <title>Login</title> {% endblock %}
+{% block content %}
+	<h1>User Login</h1>
+	{% if form.has_errors %}
+		<p>Username and Password didn't match. Try Again.</p>
+	{% endif %}
+	<form method="post" action=".">
+		<p><label for="id_username">Username: </label>
+		{{ form.username }}</p>
+		<p><label for="id_password">Password: </label>
+		{{ form.password }}</p>
+		<input type="hidden" name="next" value="/" />
+		<input type="submit" value="login" />
+	</form>
+	
+{% endblock%}

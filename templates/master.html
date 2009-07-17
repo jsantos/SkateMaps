@@ -7,6 +7,14 @@
     <link rel="stylesheet" type="text/css" href="/site_media/style.css" />
 </head>
 	<body>
+		<div id="nav">
+			<a href="/">Home</a>
+			{% if user.is_authenticated %}
+				<a>Welcome, {{ user.username}} (<a href="/logout">logout</a>)</a>
+			{% else %}
+				<a href="/login/">login</a>
+			{% endif%}
+		</div>
 		<div id="wrapper">
 			{% block content %}{% endblock %}
 		</div>	
