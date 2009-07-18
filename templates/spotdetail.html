@@ -1,8 +1,6 @@
 {% extends "master.html" %}
-
 {% block title %} <title>{{ spot.nome }}</title> {% endblock %}
 {% block content %}
-
 	<!--><h1>{{spot.nome}}</h1><-->
 	<h1><span id="title">{{spot.nome}}</span></h1>
 	<a href = '{{ spot.foto }}'><img width=160 height=110 src='{{ spot.foto }}'/></a>
@@ -13,6 +11,6 @@
 			<li>{{ cat.nome }}</li>
 		{% endfor %}
 	</ul>
-	<p><b>Coordenadas:</b> ({{ spot.latitude }}, {{ spot.longitude }})</p>
-	<p><a href=/spots/>Voltar<a><p>	
+	<p><b><a href="/spots/{{ spot.id }}/map">Ver no Mapa</a></b></p>
+	<p><a href="/spots/">Voltar</a><p>	
 {% endblock %}

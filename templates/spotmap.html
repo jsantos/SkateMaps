@@ -1,0 +1,25 @@
+{% extends "master.html" %}
+{% block scripts %}
+	<script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI-1.0.js"></script>
+	<script type="text/javascript">
+		window.onload = init;
+		var map = false;
+		function init(){
+			map = new SAPO.Maps.Map('mapDiv');
+			map.setBaseLayer(map.getBaseLayers().HYBRID_MAP);
+			map.addControl(new SAPO.Maps.Control.MapType());
+			map.addControl(new SAPO.Maps.Control.Navigation());
+			var marker = new SAPO.Maps.Marker(new OpenLayers.LonLat({{spot.longitude}},{{spot.latitude}}), {draggable: false});
+			map.addOverlay(marker);
+			marker.registerEvent('click', this, function(marker){
+				marker.openPopup('<b>{{spot.nome}}</b><br><img width=160 height=110 src="{{spot.foto}}"/>');
+			});
+			map.setMapCenter(new OpenLayers.LonLat({{spot.longitude}},{{spot.latitude}}), 18)
+		}
+	</script>
+{% endblock %}
+{% block title %} <title>{{ spot.nome }} no Mapa</title> {% endblock %}
+{% block content %}
+	<h1><span id="title">{{spot.nome}}</span></h1>
+	<div id='mapDiv' style='width:800px; height:400px;'></div>
+{% endblock %}
