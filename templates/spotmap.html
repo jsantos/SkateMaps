@@ -9,17 +9,40 @@
 			map.setBaseLayer(map.getBaseLayers().HYBRID_MAP);
 			map.addControl(new SAPO.Maps.Control.MapType());
 			map.addControl(new SAPO.Maps.Control.Navigation());
-			var marker = new SAPO.Maps.Marker(new OpenLayers.LonLat({{spot.longitude}},{{spot.latitude}}), {draggable: false});
+			map.addControl(new SAPO.Maps.Control.MiniMap());
+			var marker = new SAPO.Maps.Marker(
+				new OpenLayers.LonLat(
+					{{spot.longitude}},
+					{{spot.latitude}}), 
+					{draggable: false});
 			map.addOverlay(marker);
 			marker.registerEvent('click', this, function(marker){
 				marker.openPopup('<b>{{spot.nome}}</b><br><img width=160 height=110 src="{{spot.foto}}"/>');
 			});
 			map.setMapCenter(new OpenLayers.LonLat({{spot.longitude}},{{spot.latitude}}), 18)
 		}
+		
+		function getDirections(){
+			var dir = new SAPO.Maps.Directions(map, 'results');
+			dir.registerEvent("completed", this, function(directions){
+				var x = 1;
+			});
+			dir.getDirections(
+				new OpenLayers.LonLat(-8.615606725215912, 41.14714112554652), 
+				new OpenLayers.LonLat({{spot.longitude}},{{spot.latitude}}), 
+				{description: "Arriving to {{ spot.nome }}"}
+			);
+		}
 	</script>
 {% endblock %}
 {% block title %} <title>{{ spot.nome }} no Mapa</title> {% endblock %}
 {% block content %}
 	<h1><span id="title">{{spot.nome}}</span></h1>
-	<div id='mapDiv' style='width:800px; height:400px;'></div>
+	<div id='mapDiv' style='width:70%; height:400px; float: left'></div>
+	<div id='results' style='width:30%; float: right; height:400px; overflow-y: scroll;'></div>
+	<div style='clear: both;'>
+		<br>
+		<input type="button" onclick="getDirections()" value="Direcções">
+		<p><a href="/spots/{{spot.id}}">Voltar</a><p>
+	</div>
 {% endblock %}

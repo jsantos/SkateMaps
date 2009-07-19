@@ -9,8 +9,18 @@
 					<a href = '/spots/{{ spot.id }}'><img width=160 height=110 src='{{ spot.foto }}'/></a>
 				</li>
 			{% endfor %}
-		<ul>	
+		</ul>	
 	{% else %}
 		<p>Não há spots inseridos.</p>
+	{% endif %}
+	{% if show_paginator %}
+		<br>
+		{% if has_prev %}
+			<a href="/spots/page/{{ prev }}"><span id="title">Previous<span></a>
+		{% endif %}
+		{% if has_next %}
+			<a href="/spots/page/{{ next }}"><span id="title">Next<span></a>
+		{% endif %}
+		(Page {{ page }} of {{pages}})
 	{% endif %}
 {% endblock %}
