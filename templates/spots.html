@@ -5,7 +5,7 @@
 		<ul>
 			{% for spot in spots %}
 				<li>
-					<p><h1><span id="title">{{ spot.nome }}<span></h1></p>
+					<p><h1><span id="title">{{ spot.nome }}</span></h1></p>
 					<a href = '/spots/{{ spot.id }}'><img width=160 height=110 src='{{ spot.foto }}'/></a>
 				</li>
 			{% endfor %}
@@ -16,11 +16,21 @@
 	{% if show_paginator %}
 		<br>
 		{% if has_prev %}
-			<a href="/spots/page/{{ prev }}"><span id="title">Previous<span></a>
+			<a href="/spots/page/{{ prev }}"><span id="title"><< Previous<span></a>
+		{% else %}
+			<span id="unavaliable"><< Previous</span>	
 		{% endif %}
+		{% for p in pages %}
+			{% ifequal p page %}
+				<span id="visited">{{ p }}</span>
+			{% else %}
+				<a href="/spots/page/{{ p }}"><span id="title">{{ p }}</span></a>
+			{% endifequal %}	
+		{% endfor %}
 		{% if has_next %}
-			<a href="/spots/page/{{ next }}"><span id="title">Next<span></a>
+			<a href="/spots/page/{{ next }}"><span id="title">Next >></span></a>
+		{% else %}
+			<span id="unavaliable">Next >></span>	
 		{% endif %}
-		(Page {{ page }} of {{pages}})
 	{% endif %}
 {% endblock %}

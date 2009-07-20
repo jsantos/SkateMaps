@@ -3,9 +3,12 @@
 	<script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI-1.0.js"></script>
 	<script type="text/javascript">
 		window.onload = init;
-		var map = false;
+		var map, search;
 		function init(){
 			map = new SAPO.Maps.Map('mapDiv');
+			search = new SAPO.Maps.Search(map, 'results');
+			search.registerEvent('completed', this, completed);
+			search.registerEvent('selected', this, getDirections);
 			map.setBaseLayer(map.getBaseLayers().HYBRID_MAP);
 			map.addControl(new SAPO.Maps.Control.MapType());
 			map.addControl(new SAPO.Maps.Control.Navigation());
@@ -22,16 +25,35 @@
 			map.setMapCenter(new OpenLayers.LonLat({{spot.longitude}},{{spot.latitude}}), 18)
 		}
 		
-		function getDirections(){
+		function getDirections(search){
+			map.destroy();
+			init();
 			var dir = new SAPO.Maps.Directions(map, 'results');
+			var select = document.getElementById('mode');
+			var mode = select.options[select.selectedIndex].value;
 			dir.registerEvent("completed", this, function(directions){
 				var x = 1;
 			});
 			dir.getDirections(
-				new OpenLayers.LonLat(-8.615606725215912, 41.14714112554652), 
+				new OpenLayers.LonLat(search.getPOIS()[search.getSelectedIndex()].Longitude, search.getPOIS()[search.getSelectedIndex()].Latitude), 
 				new OpenLayers.LonLat({{spot.longitude}},{{spot.latitude}}), 
-				{description: "Arriving to {{ spot.nome }}"}
+				{mode: mode}
 			);
+		}
+		
+		var search;
+		function getResults(){
+			var query = document.getElementById('from').value;
+			if(query.length == 0){
+				alert("Deve introduzir um ponto de partida.");
+				return;
+			}
+			search.search(query);
+		}
+		
+		function completed(search){
+			var pois = search.getPOIS();
+			var length = pois.length;
 		}
 	</script>
 {% endblock %}
@@ -42,7 +64,14 @@
 	<div id='results' style='width:30%; float: right; height:400px; overflow-y: scroll;'></div>
 	<div style='clear: both;'>
 		<br>
-		<input type="button" onclick="getDirections()" value="Direcções">
+		Obter direcções a partir de: <input id='from' type="text"></input>
+		<select id='mode'>
+			<option value='fastest'>Fastest</option>
+			<option value='shortest'>Shortest</option>
+			<option value='walk'>Walking</option>
+		</select>
+		<input type="button" onclick="getResults()" value="Go">
+		<!-->Substituir getDirections() por getResults() para obter o resultado do Search<-->
 		<p><a href="/spots/{{spot.id}}">Voltar</a><p>
 	</div>
 {% endblock %}
